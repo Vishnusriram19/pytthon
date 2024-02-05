@@ -1,0 +1,87 @@
+<html>
+<head><title>bakery management</title>
+</head>
+<body background="https://th.bing.com/th/id/R.0b89b03fcb5995303aedf9d1e9bb6daa?rik=TzQfxkucTamiUQ&riu=http%3a%2f%2fwww.foodtribute.com%2fwp-content%2fuploads%2f2016%2f02%2fDifferent-types-of-bread.jpg&ehk=x4H2yg%2fwr%2fQfZX1%2fi%2bmVv2SQe%2f%2b%2bu8VcH1Vux2GGyCM%3d&risl=&pid=ImgRaw&r=0;cover()">
+<br><br><br><center><h1><b>students bakery</b></h1></center><br><br>
+<center><h2>please enter who you are</h2></center><br>
+<center><h2>1.admin</h2></center><br>
+<center><h2>2.customer</h2></center><br>
+<center><button onclick="admin()">owner</button></center><br>
+<center><button onclick="user()">customer</button></center>
+<script>
+var items=[]
+var holiday=1
+function admin()
+{
+	var n=parseInt(prompt("enter the number of items you want if the shop is a holiday enter 0:"))
+	
+	if(n==0){
+		holiday=1
+		}
+	else{
+		holiday=0;
+		for(var i=0;i<n;i++){
+			var item=[]
+			var item1=prompt("enter the item:")
+			item.push(item1)
+			var price=parseInt(prompt("enter the price of the item:"))
+			item.push(price)
+			var stock=parseInt(prompt("enter the stock of the item:"))
+			item.push(stock)
+			items.push(item)
+			}
+		}
+
+}
+function user()
+{
+	alert("hello sir welcome to our bakery")
+	if(holiday==1)
+		{
+		alert("oops sorry the shop is not available today,please come later")
+		}
+	else
+		{
+
+		alert("please enter what you want sir")
+		var req_item=prompt("enter the item:")
+		var item_search=0
+		for(var i=0;i<items.length;i++)
+			{
+			if(req_item==items[i][0])
+				{
+				item_search=1
+				alert("the availabe stock is :"+items[i][2])
+				var a=parseInt(prompt("enter how many you want:"))
+				if(a<items[i][2])
+					{
+					var ch=prompt("enter are you wanna place the order(Y/N): the total amount to be paid is: "+a*items[i][1])
+					if(ch=="Y")
+						{
+							alert("the order has been placed ,pay on delivery amount to be paid is "+a*items[i][1])
+							items[i].splice(2,1,(items[i][2]-a))
+						}
+					else
+						{
+							alert("the order is not placed")
+						}
+					}
+				else
+					{
+						alert("the requested stock is not available")
+					}
+				}
+
+			}
+		if(item_search==0)
+			{
+			alert("the requested item is not available")
+			}
+		}
+
+		
+}
+
+</script>
+</body>
+</html>
